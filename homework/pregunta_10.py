@@ -20,3 +20,25 @@ def pregunta_10():
 
 
     """
+    with open('files/input/data.csv', 'r') as file:
+            lines = file.readlines()
+
+            resultado = []
+
+            for line in lines:
+                columns = line.strip().split('\t')
+
+                letra = columns[0]
+
+                # Contar elementos en columna 4 (por comas)
+                col4 = columns[3].split(',') if columns[3] else []
+                count_col4 = len(col4)
+
+                # Contar elementos en columna 5 (por comas)
+                col5 = columns[4].split(',') if columns[4] else []
+                count_col5 = len(col5)
+
+                resultado.append((letra, count_col4, count_col5))
+
+            return resultado
+

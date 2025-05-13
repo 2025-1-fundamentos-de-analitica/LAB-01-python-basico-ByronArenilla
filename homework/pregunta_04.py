@@ -26,3 +26,25 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open('files/input/data.csv','r') as file:
+        lines = file.readlines()
+    # Inicializa un diccionario para contar los registros por mes
+    counts = {}
+    # Itera sobre cada línea del archivo
+    for line in lines:
+        # Divide la línea en columnas usando la coma como separador
+        columns = line.strip().split('\t')
+        # Obtiene la fecha de la tercera columna (índice 2)
+        date = columns[2]
+        # Extrae el mes de la fecha (los dos primeros caracteres)
+        month = date[5:7]
+        # Si el mes no está en el diccionario, lo inicializa en 0
+        if month not in counts:
+            counts[month] = 0
+        # Incrementa el contador para ese mes
+        counts[month] += 1
+    # Convierte el diccionario a una lista de tuplas y ordena alfabéticamente
+    sorted_counts = sorted(counts.items())
+    # Retorna la lista de tuplas
+    return sorted_counts
+print(pregunta_04())

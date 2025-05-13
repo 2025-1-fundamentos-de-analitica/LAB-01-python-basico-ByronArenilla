@@ -24,3 +24,25 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    with open ('files/input/data.csv', 'r') as file:
+        lines = file.readlines()
+    # Inicializa un diccionario para contar las claves
+    counts = {}
+    # Itera sobre cada línea del archivo
+    for line in lines:
+        # Divide la línea en columnas usando la coma como separador
+        columns = line.strip().split('\t')
+        # Obtiene el valor de la quinta columna (índice 4)
+        values = columns[4].split(',')
+        # Itera sobre cada valor en la columna 5
+        for value in values:
+            # Separa la clave y el valor usando `:` como separador
+            key, val = value.split(':')
+            # Si la clave no está en el diccionario, la inicializa en 0
+            if key not in counts:
+                counts[key] = 0
+            # Incrementa el contador para esa clave
+            counts[key] += 1
+    # Retorna el diccionario con los conteos
+    return counts
+

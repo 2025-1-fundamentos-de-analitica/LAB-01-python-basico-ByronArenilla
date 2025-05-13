@@ -25,3 +25,24 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        lines = file.readlines()
+    # Inicializa un diccionario para almacenar los valores y las letras asociadas
+    values = {}
+    # Itera sobre cada línea del archivo
+    for line in lines:
+        # Divide la línea en columnas usando la coma como separador
+        columns = line.strip().split('\t')
+        # Obtiene el valor de la segunda columna (índice 1)
+        value = int(columns[1])
+        # Obtiene la letra de la primera columna (índice 0)
+        letter = columns[0]
+        # Si el valor no está en el diccionario, inicializa una lista vacía
+        if value not in values:
+            values[value] = []
+        # Agrega la letra a la lista correspondiente al valor
+        values[value].append(letter)
+    # Convierte el diccionario a una lista de tuplas y ordena por el valor
+    sorted_values = sorted(values.items())
+    # Retorna la lista de tuplas
+    return sorted_values
